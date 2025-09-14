@@ -2,11 +2,12 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const ProduitController_1 = require("../controller/ProduitController");
 const express_1 = require("express");
+const AuthMiddleware_1 = require("../middleware/AuthMiddleware");
 const router = (0, express_1.Router)();
 const ProduitContro = new ProduitController_1.ProduitController();
-router.get("/", (req, res) => ProduitContro.getAll(req, res));
-router.get("/:id", (req, res) => ProduitContro.getById(req, res));
-router.post("/", (req, res) => ProduitContro.create(req, res));
-router.put("/:id", (req, res) => ProduitContro.update(req, res));
-router.delete("/:id", (req, res) => ProduitContro.delete(req, res));
+router.get("/", AuthMiddleware_1.AuthMiddleware.authentification, (req, res) => ProduitContro.getAll(req, res));
+router.get("/:id", AuthMiddleware_1.AuthMiddleware.authentification, (req, res) => ProduitContro.getById(req, res));
+router.post("/", AuthMiddleware_1.AuthMiddleware.authentification, (req, res) => ProduitContro.create(req, res));
+router.put("/:id", AuthMiddleware_1.AuthMiddleware.authentification, (req, res) => ProduitContro.update(req, res));
+router.delete("/:id", AuthMiddleware_1.AuthMiddleware.authentification, (req, res) => ProduitContro.delete(req, res));
 exports.default = router;

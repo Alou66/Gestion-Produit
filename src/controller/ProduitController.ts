@@ -87,11 +87,13 @@ export class ProduitController {
   try {
     // Validation avec Zod
     const data = schemaCreateProduit.parse(req.body);
+    const user_id = req.user?.id;
 
     // Ajout de la catégorie par défaut si elle n'est pas fournie
     const produitData = {
       ...data,
-      categorie: data.categorie ?? "ALIMENTAIRE"
+      categorie: data.categorie ?? "ALIMENTAIRE",
+      id_user: user_id!
     };
 
     // Création du produit
