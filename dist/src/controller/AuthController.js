@@ -5,9 +5,6 @@ const AuthService_1 = require("../service/AuthService");
 const UserValidatore_1 = require("../validatore/UserValidatore");
 const authservice = new AuthService_1.AuthService();
 class AuthController {
-    constructor() {
-        this.authservice = new AuthService_1.AuthService();
-    }
     static async getAll(req, res) {
         try {
             const users = await authservice.getAll();
@@ -54,6 +51,22 @@ class AuthController {
         catch (error) {
             return res.status(500).json({
                 message: "Erreur lors de la suppression de l'utilisateur",
+                erreur: error.message
+            });
+        }
+    }
+    static async connexion(req, res) {
+        try {
+            const { email, password } = req.body;
+            const connexion = await authservice.connexion(email, password);
+            return res.status(200).json({
+                message: "Connexion reussie",
+                userconnect: connexion
+            });
+        }
+        catch (error) {
+            return res.status(500).json({
+                message: "Erreur lors de la connexion",
                 erreur: error.message
             });
         }

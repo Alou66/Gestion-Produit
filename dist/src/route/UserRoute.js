@@ -6,4 +6,5 @@ const router = (0, express_1.Router)();
 router.get('/', AuthController_1.AuthController.getAll);
 router.post('/', AuthController_1.AuthController.create);
 router.delete('/:id', AuthController_1.AuthController.delete);
+router.post('/connexion', AuthController_1.AuthController.connexion);
 exports.default = router;

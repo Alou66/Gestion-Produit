@@ -7,7 +7,6 @@ import { schemaCreateUser } from "../validatore/UserValidatore";
 
 
 export class AuthController {
-    private authservice = new AuthService();
 
     static async getAll(req: Request, res: Response){
         try {
@@ -65,5 +64,23 @@ export class AuthController {
             })
         }
         
+    }
+
+    static async connexion(req:Request, res: Response){
+        try {
+            const {email, password} = req.body;
+            const connexion = await authservice.connexion(email, password)
+            return res.status(200).json({
+                message:"Connexion reussie",
+                userconnect: connexion
+            });
+
+        } catch (error) {
+            return res.status(500).json({
+                message: "Erreur lors de la connexion",
+                erreur: (error as Error).message
+            });
+            
+        }
     }
 }
