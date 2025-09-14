@@ -3,19 +3,26 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "nodemon dist/index.js ",
+    "dev:local": "PORT=3003 DATABASE_URL=\"mysql://app_user:app_pass@127.0.0.1:3306/esca_odc\" node --loader ts-node/esm src/index.ts",
+    "dev:watch": "node --loader ts-node/esm --watch src/index.ts",
+    "build": "tsc --w",
+    "start": "node dist/index.js --w",
+    "generate": "npx prisma generate",
+    "migrate": "npx prisma migrate dev"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "description": "",
   "dependencies": {
-    "@prisma/client": "^6.15.0",
+    "@prisma/client": "^6.16.1",
     "@types/express": "^5.0.3",
-    "express": "^5.1.0"
+    "express": "^5.1.0",
+    "zod": "^4.1.8"
   },
   "devDependencies": {
-    "prisma": "^6.15.0",
+    "prisma": "^6.16.1",
     "typescript": "^5.9.2"
   }
 }

@@ -1,24 +1,24 @@
 import { ProduitRepository } from './../repository/ProduitRepository';
 import { IRepository } from "../repository/IRepository";
-import { Produit } from '@prisma/client';
+import { Produits } from '@prisma/client';
 
 
-export class ProduitService implements IRepository<Produit> {
+export class ProduitService implements IRepository<Produits> {
 
     private ProduitRepo = new ProduitRepository();
 
-    async findAll(): Promise<Produit[]>{
+    async findAll(): Promise<Produits[]>{
         return await this.ProduitRepo.findAll();
         }   
 
-    async findById(id: number): Promise<Produit | null> {
+    async findById(id: number): Promise<Produits | null> {
         return await this.ProduitRepo.findById(id);
     }
 
-    async create(data: Omit<Produit, 'id'>): Promise<Produit> {
+    async create(data: Omit<Produits, 'id'>): Promise<Produits> {
         return await this.ProduitRepo.create(data);
     }
-    async update(id: number, data: Partial<Produit>): Promise<Produit | null> {
+    async update(id: number, data: Partial<Produits>): Promise<Produits | null> {
         return await this.ProduitRepo.update(id, data)
     }
     

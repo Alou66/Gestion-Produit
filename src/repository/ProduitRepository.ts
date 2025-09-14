@@ -1,31 +1,31 @@
-import { PrismaClient, Produit } from "@prisma/client";
+import { PrismaClient, Produits } from "@prisma/client";
 import { IRepository } from "./IRepository";
 
 
-export class ProduitRepository implements IRepository <Produit> {
+export class ProduitRepository implements IRepository <Produits> {
 
     private prisma = new PrismaClient();
 
-    async findAll(): Promise<Produit[]> {
-        return await this.prisma.produit.findMany();
+    async findAll(): Promise<Produits[]> {
+        return await this.prisma.produits.findMany();
         
     }
-    async findById(id: number): Promise< Produit | null> {
-        return await this.prisma.produit.findUnique({
+    async findById(id: number): Promise< Produits | null> {
+        return await this.prisma.produits.findUnique({
             where :{id}
         });
     }
 
-    async create(data: Omit<Produit, "id">): Promise<Produit> {
-        return await this.prisma.produit.create({data});
+    async create(data: Omit<Produits, "id">): Promise<Produits> {
+        return await this.prisma.produits.create({data});
     }
 
-    async update(id: number, data: Partial<Produit>): Promise<Produit | null> {
-        return await this.prisma.produit.update({where:{id}, data});
+    async update(id: number, data: Partial<Produits>): Promise<Produits | null> {
+        return await this.prisma.produits.update({where:{id}, data});
     }
 
     async delete(id: number): Promise<void> {
-        await this.prisma.produit.delete({where :{id}});
+        await this.prisma.produits.delete({where :{id}});
     }
 
 }

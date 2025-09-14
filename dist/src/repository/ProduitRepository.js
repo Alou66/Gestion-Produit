@@ -7,21 +7,21 @@ class ProduitRepository {
         this.prisma = new client_1.PrismaClient();
     }
     async findAll() {
-        return await this.prisma.produit.findMany();
+        return await this.prisma.produits.findMany();
     }
     async findById(id) {
-        return await this.prisma.produit.findUnique({
+        return await this.prisma.produits.findUnique({
             where: { id }
         });
     }
     async create(data) {
-        return await this.prisma.produit.create({ data });
+        return await this.prisma.produits.create({ data });
     }
     async update(id, data) {
-        return await this.prisma.produit.update({ where: { id }, data });
+        return await this.prisma.produits.update({ where: { id }, data });
     }
     async delete(id) {
-        await this.prisma.produit.delete({ where: { id } });
+        await this.prisma.produits.delete({ where: { id } });
     }
 }
 exports.ProduitRepository = ProduitRepository;

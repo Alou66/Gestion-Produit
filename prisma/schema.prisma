@@ -19,13 +19,20 @@ enum Categorie {
   AGRICOLE
 }
 
-model Produit {
-  id            Int       @id @default(autoincrement())
-  libelle       String
-  categorie     Categorie @default(ALIMENTAIRE)
-  prix          Int
-  quantiteStock Int
+model Produits {
+  id             Int       @id @default(autoincrement())
+  libelle        String
+  categorie      Categorie @default(ALIMENTAIRE)
+  prix           Int
+  quantiteStock  Int
   datePeremption DateTime
-  image         String?
-  stockmin      Int @default(5)
+  id_user        Int?
+  users          Users?    @relation(fields: [id_user], references: [id])
+}
+
+model Users {
+  id       Int        @id @default(autoincrement())
+  email    String   @unique
+  password String
+  produits Produits[]
 }
